@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WebApplication1.Models.Klient>
+
+@{
+    ViewBag.Title = "IndexKlient";
+}
+
+<h2>IndexKlient</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateKlient")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdKlient)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdKlient)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditKlient", new {  id=item.IdKlient  }) |
+            @Html.ActionLink("Delete", "DeleteKlient", new { id = item.IdKlient })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Admin Table", "Index")
+</p>

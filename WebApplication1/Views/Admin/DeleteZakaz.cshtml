@@ -1,0 +1,80 @@
+﻿@model WebApplication1.Models.Zakaz
+
+@{
+    ViewBag.Title = "DeleteZakaz";
+}
+
+<h2>DeleteZakaz</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Zakaz</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdZakaz)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdZakaz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdCar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdAdmin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdAdmin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdMaster)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdMaster)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdKlient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdKlient)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebApplication1.Models.Master>
+
+@{
+    ViewBag.Title = "IndexMaster";
+}
+
+<h2>IndexMaster</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateMaster")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdMaster)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salary)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdMaster)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salary)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditMaster", new {  id=item.IdMaster  }) |
+            @Html.ActionLink("Delete", "DeleteMaster", new {  id=item.IdMaster })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Admin Table", "Index")
+</p>

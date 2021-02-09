@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Database1ModelContainer" CdmEntityContainer="Database1Entities1">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="Database1Model.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="IdAdmin" ColumnName="IdAdmin" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Profit" ColumnName="Profit" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cars">
+      <EntityTypeMapping TypeName="Database1Model.Car">
+        <MappingFragment StoreEntitySet="Car">
+          <ScalarProperty Name="IdCar" ColumnName="IdCar" />
+          <ScalarProperty Name="DerzhNomer" ColumnName="DerzhNomer" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="ProdYear" ColumnName="ProdYear" />
+          <ScalarProperty Name="IdKlient" ColumnName="IdKlient" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Klients">
+      <EntityTypeMapping TypeName="Database1Model.Klient">
+        <MappingFragment StoreEntitySet="Klient">
+          <ScalarProperty Name="IdKlient" ColumnName="IdKlient" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Masters">
+      <EntityTypeMapping TypeName="Database1Model.Master">
+        <MappingFragment StoreEntitySet="Master">
+          <ScalarProperty Name="IdMaster" ColumnName="IdMaster" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zakazs">
+      <EntityTypeMapping TypeName="Database1Model.Zakaz">
+        <MappingFragment StoreEntitySet="Zakaz">
+          <ScalarProperty Name="IdZakaz" ColumnName="IdZakaz" />
+          <ScalarProperty Name="IdCar" ColumnName="IdCar" />
+          <ScalarProperty Name="IdAdmin" ColumnName="IdAdmin" />
+          <ScalarProperty Name="IdMaster" ColumnName="IdMaster" />
+          <ScalarProperty Name="IdKlient" ColumnName="IdKlient" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

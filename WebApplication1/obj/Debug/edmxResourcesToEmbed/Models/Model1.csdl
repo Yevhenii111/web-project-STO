@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="IdAdmin" />
+    </Key>
+    <Property Name="IdAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Profit" Type="Int32" />
+    <Property Name="Salary" Type="Int32" />
+    <NavigationProperty Name="Zakazs" Relationship="Self.FK_Zakaz_Admin" FromRole="Admin" ToRole="Zakaz" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="IdCar" />
+    </Key>
+    <Property Name="IdCar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DerzhNomer" Type="Int32" Nullable="false" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProdYear" Type="Int32" Nullable="false" />
+    <Property Name="IdKlient" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Klient" Relationship="Self.FK_Car_Klient" FromRole="Car" ToRole="Klient" />
+    <NavigationProperty Name="Zakazs" Relationship="Self.FK_Zakaz_Car" FromRole="Car" ToRole="Zakaz" />
+  </EntityType>
+  <EntityType Name="Klient">
+    <Key>
+      <PropertyRef Name="IdKlient" />
+    </Key>
+    <Property Name="IdKlient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_Car_Klient" FromRole="Klient" ToRole="Car" />
+    <NavigationProperty Name="Zakazs" Relationship="Self.FK_Zakaz_Klient" FromRole="Klient" ToRole="Zakaz" />
+  </EntityType>
+  <EntityType Name="Master">
+    <Key>
+      <PropertyRef Name="IdMaster" />
+    </Key>
+    <Property Name="IdMaster" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Salary" Type="Int32" />
+    <NavigationProperty Name="Zakazs" Relationship="Self.FK_Zakaz_Master" FromRole="Master" ToRole="Zakaz" />
+  </EntityType>
+  <EntityType Name="Zakaz">
+    <Key>
+      <PropertyRef Name="IdZakaz" />
+    </Key>
+    <Property Name="IdZakaz" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCar" Type="Int32" Nullable="false" />
+    <Property Name="IdAdmin" Type="Int32" Nullable="false" />
+    <Property Name="IdMaster" Type="Int32" Nullable="false" />
+    <Property Name="IdKlient" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Int32" />
+    <Property Name="Status" Type="Int32" />
+    <NavigationProperty Name="Admin" Relationship="Self.FK_Zakaz_Admin" FromRole="Zakaz" ToRole="Admin" />
+    <NavigationProperty Name="Car" Relationship="Self.FK_Zakaz_Car" FromRole="Zakaz" ToRole="Car" />
+    <NavigationProperty Name="Klient" Relationship="Self.FK_Zakaz_Klient" FromRole="Zakaz" ToRole="Klient" />
+    <NavigationProperty Name="Master" Relationship="Self.FK_Zakaz_Master" FromRole="Zakaz" ToRole="Master" />
+  </EntityType>
+  <Association Name="FK_Zakaz_Admin">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="IdAdmin" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="IdAdmin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_Klient">
+    <End Role="Klient" Type="Self.Klient" Multiplicity="1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klient">
+        <PropertyRef Name="IdKlient" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="IdKlient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Car">
+    <End Role="Car" Type="Self.Car" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="IdCar" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="IdCar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Klient">
+    <End Role="Klient" Type="Self.Klient" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klient">
+        <PropertyRef Name="IdKlient" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="IdKlient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Master">
+    <End Role="Master" Type="Self.Master" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Master">
+        <PropertyRef Name="IdMaster" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="IdMaster" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Database1Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Cars" EntityType="Self.Car" />
+    <EntitySet Name="Klients" EntityType="Self.Klient" />
+    <EntitySet Name="Masters" EntityType="Self.Master" />
+    <EntitySet Name="Zakazs" EntityType="Self.Zakaz" />
+    <AssociationSet Name="FK_Zakaz_Admin" Association="Self.FK_Zakaz_Admin">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="Zakaz" EntitySet="Zakazs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_Klient" Association="Self.FK_Car_Klient">
+      <End Role="Klient" EntitySet="Klients" />
+      <End Role="Car" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Car" Association="Self.FK_Zakaz_Car">
+      <End Role="Car" EntitySet="Cars" />
+      <End Role="Zakaz" EntitySet="Zakazs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Klient" Association="Self.FK_Zakaz_Klient">
+      <End Role="Klient" EntitySet="Klients" />
+      <End Role="Zakaz" EntitySet="Zakazs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Master" Association="Self.FK_Zakaz_Master">
+      <End Role="Master" EntitySet="Masters" />
+      <End Role="Zakaz" EntitySet="Zakazs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebApplication1.Models.Car>
+
+@{
+    ViewBag.Title = "IndexCar";
+}
+
+<h2>IndexCar</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateCar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DerzhNomer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdKlient)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdCar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DerzhNomer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Color)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProdYear)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdKlient)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditCar", new {  id=item.IdCar}) |
+            @Html.ActionLink("Delete", "DeleteCar", new {  id=item.IdCar })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Admin Table", "Index")
+</p>

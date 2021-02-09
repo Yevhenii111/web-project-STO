@@ -1,0 +1,28 @@
+﻿@model WebApplication1.Models.OperandsModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Check", "Klient"))
+        {
+            @Html.TextAreaFor(x => x.Num1); // input area for operand 1
+
+            <input type="submit" value="Перевірити" />
+        }
+        </div>
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Result)) //cheack result container
+    {
+        <p>@ViewBag.Result</p>
+    }
+</body>
+</html>

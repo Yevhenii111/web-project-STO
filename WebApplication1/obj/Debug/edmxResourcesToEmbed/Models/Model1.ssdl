@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Database1Model" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="IdAdmin" />
+    </Key>
+    <Property Name="IdAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Profit" Type="int" />
+    <Property Name="Salary" Type="int" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="IdCar" />
+    </Key>
+    <Property Name="IdCar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DerzhNomer" Type="int" Nullable="false" />
+    <Property Name="Color" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProdYear" Type="int" Nullable="false" />
+    <Property Name="IdKlient" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Klient">
+    <Key>
+      <PropertyRef Name="IdKlient" />
+    </Key>
+    <Property Name="IdKlient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Master">
+    <Key>
+      <PropertyRef Name="IdMaster" />
+    </Key>
+    <Property Name="IdMaster" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Salary" Type="int" />
+  </EntityType>
+  <EntityType Name="Zakaz">
+    <Key>
+      <PropertyRef Name="IdZakaz" />
+    </Key>
+    <Property Name="IdZakaz" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCar" Type="int" Nullable="false" />
+    <Property Name="IdAdmin" Type="int" Nullable="false" />
+    <Property Name="IdMaster" Type="int" Nullable="false" />
+    <Property Name="IdKlient" Type="int" Nullable="false" />
+    <Property Name="Price" Type="int" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <Association Name="FK_Car_Klient">
+    <End Role="Klient" Type="Self.Klient" Multiplicity="1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klient">
+        <PropertyRef Name="IdKlient" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="IdKlient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Admin">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="IdAdmin" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="IdAdmin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Car">
+    <End Role="Car" Type="Self.Car" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="IdCar" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="IdCar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Klient">
+    <End Role="Klient" Type="Self.Klient" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klient">
+        <PropertyRef Name="IdKlient" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="IdKlient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Master">
+    <End Role="Master" Type="Self.Master" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Master">
+        <PropertyRef Name="IdMaster" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="IdMaster" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище Database1ModelContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Klient" EntityType="Self.Klient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Master" EntityType="Self.Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zakaz" EntityType="Self.Zakaz" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Car_Klient" Association="Self.FK_Car_Klient">
+      <End Role="Klient" EntitySet="Klient" />
+      <End Role="Car" EntitySet="Car" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Admin" Association="Self.FK_Zakaz_Admin">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="Zakaz" EntitySet="Zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Car" Association="Self.FK_Zakaz_Car">
+      <End Role="Car" EntitySet="Car" />
+      <End Role="Zakaz" EntitySet="Zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Klient" Association="Self.FK_Zakaz_Klient">
+      <End Role="Klient" EntitySet="Klient" />
+      <End Role="Zakaz" EntitySet="Zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Master" Association="Self.FK_Zakaz_Master">
+      <End Role="Master" EntitySet="Master" />
+      <End Role="Zakaz" EntitySet="Zakaz" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
